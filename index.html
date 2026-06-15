@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreastCancer.ai</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* 🎨 GLOBAL DESIGN SETUP */
+        body {
+            background-color: #FCDAD7; /* Beautiful pink tone from image_8552e5.jpg */
+            background-image: none !important; 
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 🏷️ BALANCED BRAND HEADER */
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 40px 60px 0px 60px; /* Generous spacing above the main content */
+            gap: 16px;
+        }
+
+        .nav-logo-icon {
+            width: 65px; /* Clean, mid-sized square icon */
+            height: 65px;
+            background: linear-gradient(135deg, #E056FD, #22C1C3);
+            border-radius: 18px;
+        }
+
+        .brand-text {
+            font-size: 2.8rem; /* Balanced bold typography */
+            font-weight: 800;
+            color: #1A1A2E;
+            letter-spacing: -1.5px;
+        }
+
+        /* 📦 ENHANCED GRID LAYOUT FOR EXTRA CHATBOX SPACE */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr; /* Maximizes the space given to the chat module */
+            gap: 60px;
+            padding: 40px 60px;
+            align-items: start; /* Aligns contents neatly to the top */
+            flex-grow: 1;
+        }
+
+        /* LEFT COLUMN HERO CONTENTS */
+        .hero-section {
+            max-width: 480px;
+            margin-top: 40px;
+        }
+
+        .hero-section .badge {
+            background-color: #D1FAE5;
+            color: #065F46;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-section h1 {
+            font-size: 3.2rem;
+            line-height: 1.15;
+            margin: 24px 0;
+            color: #1A1A2E;
+            font-weight: 800;
+        }
+
+        .hero-section p {
+            font-size: 1.15rem;
+            color: #4A4A6A;
+            line-height: 1.5;
+        }
+
+        /* 💬 ENLARGED CHAT MODULE CONTAINER */
+        .chat-widget {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .chat-window {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 680px; /* Wider chatbox profile matching image_8552e5.jpg */
+            min-height: 580px; /* Tall box footprint for a comfortable reading area */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 24px;
+            box-sizing: border-box;
+            gap: 20px;
+        }
+
+        /* HEADER PANEL INSIDE CHAT WINDOW */
+        .chat-header {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #E056FD, #22C1C3);
+            color: white;
+            border-radius: 20px;
+        }
+
+        .header-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .header-info span {
+            font-size: 0.75rem;
+            opacity: 0.85;
+            letter-spacing: 0.5px;
+        }
+
+        /* MESSAGES LOG WINDOW */
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            max-height: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 4px;
+        }
+
+        /* UTILITY BUTTON ACTIONS ROW */
+        .utility-action-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 4px;
+        }
+
+        .utility-action-row button {
+            flex: 1;
+            padding: 12px;
+            border-radius: 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1.5px solid #E2E8F0;
+            background: #F8FAFC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .utility-action-row button:hover {
+            background: #EDF2F7;
+        }
+
+        /* INPUT ROW AREA */
+        .chat-input-area {
+            display: flex;
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 24px;
+            padding: 6px 12px;
+            align-items: center;
+        }
+
+        .chat-input-area input {
+            flex-grow: 1;
+            border: none;
+            background: transparent;
+            padding: 10px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .chat-input-area button {
+            background: transparent;
+            border: none;
+            color: #059669;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 0 10px;
+        }
+
+        /* CLINICAL DISCLAIMER FOOTER TEXT */
+        .chat-disclaimer {
+            font-size: 0.72rem;
+            color: #718096;
+            line-height: 1.4;
+            border-top: 1px solid #EDF2F7;
+            padding-top: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo-icon"></div>
+        <span class="brand-text">BreastCancerGuide.ai</span>
+    </nav>
+
+    <main class="main-layout">
+        
+        <section class="hero-section">
+            <span class="badge">AN ONCOLOGIST CURATED AI POWERED EDUCATIONAL COMPANION</span>
+            <h1>Empowering Your Breast Health Journey.</h1>
+            <p>Get clear, simple answers from your private clinical library.</p>
+        </section>
+
+        <section class="chat-widget">
+            <div class="chat-window">
+                
+                <div class="chat-header">
+                    <div class="header-info">
+                        <h3>Mary's Support Chat</h3>
+                        <span>LOCAL AI • SECURE</span>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chat-messages">
+                    <div class="mary-bubble">
+                        Hello! I'm Mary. How can I help you today?
+                    </div>
+                </div>
+
+                <!-- 💾 BUTTON ROW MOVED TO THE BOTTOM EXACTLY LIKE IMAGE_8552E5.JPG -->
+                <div class="utility-action-row">
+                    <button onclick="downloadChat()">📥 Download Chat</button>
+                    <button onclick="clearChatHistory()">🗑️ Clear Chat</button>
+                </div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="user-input" placeholder="Warming up Mary's engine..." disabled autocomplete="off">
+                    <button id="send-btn" disabled>Send</button>
+                </div>
+
+                <div class="chat-disclaimer">
+                    <strong>Education Tool Only:</strong> This chat app is meant to clarify common words or medical concepts. It does not provide medical advice or official treatment paths. Please always connect with your main healthcare doctor for individual medical care.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module">
+    // 1. Import the correct function name from engine.js
+    import { initMary } from "./core/engine.js";
+
+    const chatMessages = document.getElementById("chat-messages");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+
+    let chatHistory = [];
+    let askMaryRunner = null; // This will hold our active chat pipeline function
+
+    window.clearChatHistory = function() {
+        chatMessages.innerHTML = '<div class="mary-bubble">Hello! I\'m Mary. How can I help you today?</div>';
+        chatHistory = [];
+    };
+
+    window.downloadChat = function() {
+        if (chatHistory.length === 0) return;
+        const blob = new Blob([JSON.stringify(chatHistory, null, 2)], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'mary_conversation.txt';
+        link.click();
+    };
+
+    // 2. Fix the initialization sequence
+    async function setupApp() {
+        try {
+            // We pass a function to monitor the progress tracker safely
+            askMaryRunner = await initMary((report) => {
+                // This updates the input placeholder text while downloading the 1.6GB file
+                userInput.placeholder = `Downloading model: ${Math.round(report.progress * 100)}%...`;
+            });
+
+            // Once fully loaded, unlock the input boxes for the patient
+            userInput.disabled = false;
+            sendBtn.disabled = false;
+            userInput.placeholder = "Ask Mary a question...";
+        } catch (error) {
+            console.error("Initialization issue:", error);
+            userInput.placeholder = "Error connecting to engine.";
+        }
+    }
+
+    // 3. Update the submission function to use the active runner
+    async function handleUserSubmit() {
+        const text = userInput.value.trim();
+        if (!text || !askMaryRunner) return; // Safely stop if runner isn't ready
+
+        userInput.value = "";
+        userInput.disabled = true;
+        sendBtn.disabled = true;
+
+        const userBubble = document.createElement("div");
+        userBubble.className = "user-bubble";
+        userBubble.textContent = text;
+        chatMessages.appendChild(userBubble);
+        
+        const maryBubble = document.createElement("div");
+        maryBubble.className = "mary-bubble";
+        maryBubble.textContent = "Mary is thinking..."; 
+        chatMessages.appendChild(maryBubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        let fullAnswer = "";
+
+        try {
+            // Call the returned chat pipeline function
+            await askMaryRunner(text, chatHistory, (chunk) => {
+                if (fullAnswer === "") maryBubble.textContent = ""; 
+                fullAnswer += chunk;
+                maryBubble.textContent = fullAnswer;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+
+            chatHistory.push({ role: "user", content: text });
+            chatHistory.push({ role: "assistant", content: fullAnswer });
+
+        } catch (err) {
+            maryBubble.textContent = "An error occurred while generating the answer.";
+            console.error(err);
+        } finally {
+            userInput.disabled = false;
+            sendBtn.disabled = false;
+            userInput.focus();
+        }
+    }
+
+    sendBtn.addEventListener("click", handleUserSubmit);
+    userInput.addEventListener("keypress", (e) => { if (e.key === "Enter") handleUserSubmit(); });
+
+    setupApp();
+</script>
+</body>
+</html>

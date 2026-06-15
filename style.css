@@ -1,0 +1,30 @@
+/* style.css - Keep this minimal, the layout is now in index.html */
+:root {
+  --mary-bubble-color: #F8FAFC;
+  --user-bubble-color: #D1FAE5;
+  --text-dark: #1A1A2E;
+  --text-muted: #4A4A6A;
+}
+
+.mary-bubble {
+  background-color: var(--mary-bubble-color);
+  color: var(--text-dark);
+  align-self: flex-start;
+  padding: 12px 18px;
+  border-radius: 18px 18px 18px 4px;
+  max-width: 85%;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.user-bubble {
+  background-color: var(--user-bubble-color);
+  color: #065F46;
+  align-self: flex-end;
+  padding: 12px 18px;
+  border-radius: 18px 18px 4px 18px;
+  max-width: 85%;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+}

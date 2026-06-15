@@ -1,0 +1,21 @@
+{
+  "name": "BreastCancer.ai",
+  "short_name": "Mary AI",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FCDAD7",
+  "theme_color": "#E056FD",
+  "description": "A secure, private AI assistant for breast health education.",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

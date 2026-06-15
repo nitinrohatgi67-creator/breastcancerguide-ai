@@ -1,5 +1,5 @@
 // app.js
-import { initMary } from "./core/engine.js";
+import { initMary } from "../core/engine.js";
 
 // Active conversation memory log
 let messageHistory = [

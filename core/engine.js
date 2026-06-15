@@ -9,13 +9,19 @@ export async function initMary(onProgressUpdate) {
     console.log(`📡 Initializing stable core WebLLM model: ${MODEL_ID}`);
 
     try {
+        // Explicitly set the configuration to use the official MLC CDN to fix CORS issues
         engine = await webLLM.CreateMLCEngine(MODEL_ID, {
             initProgressCallback: (report) => {
                 console.log("📦 Model Download Status:", report.text);
                 if (onProgressUpdate) {
                     onProgressUpdate(report);
                 }
-            }
+            },
+            model_list: [{
+                model: "https://huggingface.co/mlc-ai/gemma-2-2b-it-q4f16_1-MLC/resolve/main/",
+                model_id: MODEL_ID,
+                model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/gemma-2b-it/gemma-2b-it-q4f16_1-MLC-webgpu.wasm"
+            }]
         });
         console.log("✅ WebLLM engine loaded successfully with Gemma 2.");
     } catch (err) {
